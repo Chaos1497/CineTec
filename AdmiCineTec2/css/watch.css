@@ -1,0 +1,273 @@
+/************************************     General      ****************************************/
+
+body{
+    font-family: calibri, sans-serif;
+}
+
+.navbar {
+    background-image: url(../images/nav_background_2.png);
+}
+
+.down-button i {
+    color: #082B4D;
+}
+
+.contactBtnGreen{
+    background: #4FA850;
+    border: 1px solid #4FA850;
+    border-radius: 28px;
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+    font-size: 17px;
+    padding: 9px 25px;
+    text-decoration: none;
+    text-shadow: rgb(47, 102, 39) 0px 1px 0px;
+}
+
+.contactBtnGreen:hover{
+    background: #5fc760;
+}
+
+.greenBtn{
+    background: #4FA850;
+    border: 1px solid #4FA850;
+}
+
+.contactBtnBlue{
+    background: #082B4D;
+    border: 1px solid #082B4D;
+    border-radius: 28px;
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+    font-size: 17px;
+    padding: 9px 25px;
+    text-decoration: none;
+    text-shadow: rgb(47, 102, 39) 0px 1px 0px;
+}
+
+.contactBtnBlue:hover{
+    background: #165491;
+}
+/************************************     Header      ****************************************/
+
+#watch-wallpaper{
+    background-image:url(../images/watch/cine.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#textHeader div{
+    padding-right: 50px;
+    text-align: right;
+}
+
+#textHeader h1{
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    margin-top: 50;
+}
+
+#textHeader p{
+    font-size: 40px;
+    color: white;
+}
+
+#textHeader span{
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/************************************     Registro      ****************************************/
+
+#registration input[type="text"]{
+  border: black;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #212121;
+  font-size: 16px;
+}
+
+#registration{
+    max-width: 0px;
+}
+
+#registration h2, h3, h4, h5, h6, h6, h7{
+    font-size: 30px;
+}
+
+/************************************     Consultas      ****************************************/
+
+#consult input[type="text"]{
+  border: black;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #212121;
+  font-size: 16px;
+}
+
+#consult{
+    max-width: 0px;
+}
+
+#consult h2, h3, h4, h5, h6, h6, h7{
+    font-size: 30px;
+}
+
+/************************************     Asignaciones      ****************************************/
+
+#asign input[type="text"]{
+  border: black;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #212121;
+  font-size: 16px;
+}
+
+#asign{
+    max-width: 0px;
+}
+
+#asign h2, h3, h4, h5, h6, h6, h7{
+    font-size: 30px;
+}
+
+/************************************     Reportes      ****************************************/
+
+#reports input[type="text"]{
+  border: black;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #212121;
+  font-size: 16px;
+}
+
+#reports{
+    max-width: 0px;
+}
+
+#reports h2, h3, h4, h5, h6, h6, h7{
+    font-size: 30px;
+}
+
+/************************************     Presupuestos      ****************************************/
+
+#budget input[type="text"]{
+  border: black;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #212121;
+  font-size: 16px;
+}
+
+#budget{
+    max-width: 0px;
+}
+
+/************************************     Quotes      ****************************************/
+
+blockquote {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    margin: 0.25em 0;
+    padding: 0.25em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: #383838;
+    border: none;
+}
+
+blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+}
+
+blockquote cite {
+    color: #999999;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+}
+ 
+blockquote cite:before {
+    content: "\2014 \2009";
+}
+
+#quotes{
+    margin-bottom: 50px;
+}
+
+#sep{
+    margin-top: 50px;
+}
+
+/************************************     Contacto      ****************************************/
+
+#contact{
+    font-size: 22px;
+    width: 70%;
+    border-top: 1px solid #d8d8d8;
+    margin:50px auto;
+    padding-top: 30px;
+}
+
+
+/************************************     Media Queries      ****************************************/
+
+@media (max-width: 991px) {
+    #listSpecsWatch p{
+        line-height: 30px;
+        text-align: center;
+    }
+    #sep{
+        display: none;
+    }
+}
+
+@media (max-width: 400px) { 
+    .navbar-header {
+        position: relative;
+    }
+    .navbar img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 70%;
+    }
+}
+
+@media (max-width: 1024px){
+    .navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{
+        color:#626262;
+    }
+    .navbar-default .navbar-nav>li>a
+    {
+        font-size: 16px;
+        color: #626262;   
+    }
+    .navbar {
+        background-image: none;
+    }
+
+}
