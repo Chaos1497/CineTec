@@ -1,153 +1,164 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
-    <head>
-        <title>CineTec</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta charset="utf-8" >
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery.fs.wallpaper.css" rel="stylesheet" type="text/css"/>
-        <link href="css/main.css" rel="stylesheet" type="text/css"/>
-        <link href="css/watch.css" rel="stylesheet" type="text/css"/>
-        <link href="css/simpletextrotator.css" rel="stylesheet" type="text/css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    </head>
-    <body>
-        <!--  <header id="top">   -->
-    <header id="watch-wallpaper"> 
-            <nav class="navbar navbar-default navbar-fixed-top cbp-af-header" role="navigation">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>,
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="#video-wallpaper">
-                            <img src="images/logo.png" alt="LOGO LOGO LOGO" /><!-- 220x51px -->
-                        </a>
-                    </div>
-    
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href='index.html'>Inicio</a></li>
-                            <li><a href='cliente.html'>Registrar clientes</a></li>
-                            <li><a href='movie.html'>Registrar películas</a></li>
-                            <li><a href='cinema.html'>Registrar cines</a></li>
-                            <li><a href='room.html'>Registrar salas</a></li>
-                            <li><a href='proyecciones.html'>Asignar proyecciones</a></li>                                                s                                                                             
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-            <div>
-                <h1 class="green wow fadeInRight"><span>REGISTRO DE CLIENTES</span></h1>
-                    <label for="username">Nombre</label>
-                    <input type="text" id="Name" value="Name"><br>
-                    <label for="username">Primer Apellido</label>
-                    <input type="text" id="Lname" value="Lname"><br>
-                    <label for="username">Segundo apellido</label>
-                    <input type="text" id="SLname" value="SLname"><br>
-                    <label for="username">Cedula</label>
-                    <input type="text" id="Id" value="Id"><br>
-                    <label for="username">Correo</label>
-                    <input type="text" id="Email" value="Email"><br>
-                    <label for="username">Teléfono</label>
-                    <input type="text" id="Phone" value="Phone"><br>
-                    <button class="btn btn-success" id="btnGuardar" type="button"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-					<button class="btn btn-danger" id="btnCancelar" type="reset"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-            </div>
-            <table id="A" class="table table-striped table-hover ">
-                    <thead>
-                        <tr>
-                            <th>Primer Nombre</th>
-                            <th>Primer Apellido</th>
-                            <th>Segundo Apellido</th>
-                            <th>Cedula</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                        </tr>
-                    </thead>
-                </table>
-                    
-                <script>
-                    $(document).ready(function () {
-                        loadDataTable();
-                        function GetData(tbody, table) {
-                            $(tbody).on('click', '#btnEditar', function () {
-                                var ObjtDatos = table.row($(this).parents('tr')).data()
-                                Primer_nombre = $('#Name').val(ObjtDatos.Primer_nombre);
-                                Primer_apellido = $('#Lname').val(ObjtDatos.Primer_apellido);
-                                Segundo_apellido = $('#SLname').val(ObjtDatos.Segundo_apellido);
-                                Cedula = $('#Id').val(ObjtDatos.Cedula);
-                                Correo = $('#Email').val(ObjtDatos.Correo);
-                                Telefono = $('#Phone').val(ObjtDatos.Telefono);
-                            });
-                        }
-                        function loadDataTable() {
-                            var table = $('#A').DataTable({
-                                "processing": true,
-                                "ajax": {
-                                    "url": "http://cinetecrestservice.cloudapp.net/client/getall",
-                                    "type": "GET"
-                                },
-                                "columns": [
-                                    { "data": "Primer_nombre" },
-                                    { "data": "Primer_apellido" },
-                                    { "data": "Segundo_apellido" },					
-                                    { "data": "Cedula" },
-                                    { "data": "Correo" },
-                                    { "data": "Telefono" },
-                                    { "defaultContent": "<button class='btn btn-info' id='btnEditar'>Editar</button>" }
-                                ]
-                            });
-                            GetData("#A", table)
-                        }
-                        $('#btnGuardar').click(function () {
-                            //declaracion del objeto
-                            nuevo_cliente = {};                
-                            //minuto 4
-                            nuevo_cliente.Primer_nombre = $('#Name').val();
-                            nuevo_cliente.Primer_apellido = $('#Lname').val();
-                            nuevo_cliente.Segundo_apellido = $('#SLname').val();
-                            nuevo_cliente.Cedula = $('#Id').val();
-                            nuevo_cliente.Correo = $('#Email').val();
-                            nuevo_cliente.Telefono = $('#Phone').val();
-                            
-                            $.ajax({
-                                url: 'http://cinetecrestservice.cloudapp.net/client/create',
-                                type: 'POST',
-                                dataType: 'json',
-                                data: nuevo_cliente,
-                                success: function (data) {
-                                    var result = data.data;
-                                },
-                                error: function () {
-                                    console.log('err')
-                                }
-                            });
-                        });
-                    });
-                </script>
-    </header>
+<head>
+	<title>CineTec</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery.fs.wallpaper.css" rel="stylesheet" type="text/css" />
+	<link href="css/main.css" rel="stylesheet" type="text/css" />
+	<link href="css/watch.css" rel="stylesheet" type="text/css" />
+	<link href="css/simpletextrotator.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
 
-    <footer class="container-fluid">        
-        <p>Todos los derechos reservados | Cartago, Costa Rica | XXX 2018</p>
-    </footer>
 
-    <script src="scripts/jquery-2.1.1.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/classie.js"></script>
-    <script src="scripts/cbpAnimatedHeader.js"></script>
-    <script src="scripts/jquery.easing.1.3.js"></script>
-    <script src="scripts/wow.min.js"></script>
-    <script src="scripts/jquery.stellar.js"></script>
-    <script src="scrolling.js"></script>
-    <script src="scripts/jquery.fs.wallpaper.min.js"></script>
-    <script src="scripts/jquery.simple-text-rotator.js"></script>
-    </body>
+	<div class="page-header text-center">
+		<h2>Registro de Clientes</h2>
+	</div>
+	<nav class="navbar navbar-default navbar-fixed-top cbp-af-header" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>,
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#video-wallpaper">
+					<img src="images/logo.png" alt="LOGO LOGO LOGO" /><!-- 220x51px -->
+				</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href='cliente.html'>Registrar clientes</a></li>
+					<li><a href='movie.html'>Registrar películas</a></li>
+					<li><a href='cinema.html'>Registrar cines</a></li>
+					<li><a href='room.html'>Registrar salas</a></li>
+					<li><a href='proyecciones.html'>Asignar proyecciones</a></li>                                                s
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+
+	<div class="container">
+		<form>
+			<div class="row">
+
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="txtT_name" class="col-sm-2 col-form-label">Nombre</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="txtT_name" placeholder="Nombre">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="txtT_location" class="col-sm-2 col-form-label">Ubicacion</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="txtT_location" placeholder="Ubicacion">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="txtNumber_rooms" class="col-sm-2 col-form-label">Salas</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="txtNumber_rooms" placeholder="Numero de Salas">
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group text-center">
+						<button class="btn btn-success" id="btnGuardar" type="button"><span></span> Guardar</button>
+						<button class="btn btn-danger" id="btnCancelar" type="reset"><span></span> Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div ng-app="miApp" ng-controller="clientsctrl">
+
+		<table class="table table-striped table-hover ">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Ubicacion</th>
+					<th>Numero de salas</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tr ng-repeat="x in myData">
+				<td>{{ x.Id_theater }}</td>
+				<td>{{ x.T_name }}</td>
+				<td>{{ x.T_location }}</td>
+				<td>{{ x.Number_rooms }}</td>
+				<td><button class='btn btn-info' id='btnEditar'>Editar</button></td>
+
+			</tr>
+		</table>
+
+
+
+	</div>
+	<script>
+
+
+
+		var app = angular.module('miApp', []);
+		app.controller('clientsctrl', function ($scope, $http) {
+			$http({
+				method: 'GET',
+				url: 'http://cinetecrestservice.cloudapp.net/theater/getall'
+			}).then(function successCallback(response) {
+
+				$scope.myData = response.data.records;
+
+			}, function errorCallback(response) {
+				$scope.error = response.statusText;
+			});
+
+		});
+
+	</script>
+
+
+
+
+	<footer class="container-fluid">
+		<p>Todos los derechos reservados | Cartago, Costa Rica | XXX 2018</p>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"></script>
+	<script src="{{asset('js/jquery.min.js')}}"></script>
+	<script src="{{asset('js/app.js')}}"></script>
+	<script src="scripts/jquery-2.1.1.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<script src="scripts/classie.js"></script>
+	<script src="scripts/cbpAnimatedHeader.js"></script>
+	<script src="scripts/jquery.easing.1.3.js"></script>
+	<script src="scripts/wow.min.js"></script>
+	<script src="scripts/jquery.stellar.js"></script>
+	<script src="scrolling.js"></script>
+	<script src="scripts/jquery.fs.wallpaper.min.js"></script>
+	<script src="scripts/jquery.simple-text-rotator.js"></script>
+	<script src="scripts/plugins/DataTables-1.10.15/media/js/jquery.dataTables.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</body>
 </html>
